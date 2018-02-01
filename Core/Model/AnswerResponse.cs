@@ -5,33 +5,33 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace Model {
+namespace VAuto.Core.Model {
 
   /// <summary>
   /// 
   /// </summary>
   [DataContract]
-  public class DealerAnswer {
+  public class AnswerResponse {
     /// <summary>
-    /// Gets or Sets DealerId
+    /// Gets or Sets Success
     /// </summary>
-    [DataMember(Name="dealerId", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "dealerId")]
-    public int? DealerId { get; set; }
+    [DataMember(Name="success", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "success")]
+    public bool? Success { get; set; }
 
     /// <summary>
-    /// Gets or Sets Name
+    /// Gets or Sets Message
     /// </summary>
-    [DataMember(Name="name", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "name")]
-    public string Name { get; set; }
+    [DataMember(Name="message", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "message")]
+    public string Message { get; set; }
 
     /// <summary>
-    /// Gets or Sets Vehicles
+    /// Gets or Sets TotalMilliseconds
     /// </summary>
-    [DataMember(Name="vehicles", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "vehicles")]
-    public List<VehicleAnswer> Vehicles { get; set; }
+    [DataMember(Name="totalMilliseconds", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "totalMilliseconds")]
+    public int? TotalMilliseconds { get; set; }
 
 
     /// <summary>
@@ -40,10 +40,10 @@ namespace Model {
     /// <returns>String presentation of the object</returns>
     public override string ToString()  {
       var sb = new StringBuilder();
-      sb.Append("class DealerAnswer {\n");
-      sb.Append("  DealerId: ").Append(DealerId).Append("\n");
-      sb.Append("  Name: ").Append(Name).Append("\n");
-      sb.Append("  Vehicles: ").Append(Vehicles).Append("\n");
+      sb.Append("class AnswerResponse {\n");
+      sb.Append("  Success: ").Append(Success).Append("\n");
+      sb.Append("  Message: ").Append(Message).Append("\n");
+      sb.Append("  TotalMilliseconds: ").Append(TotalMilliseconds).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }

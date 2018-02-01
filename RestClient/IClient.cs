@@ -1,9 +1,9 @@
-﻿using RestClient.ClientApi;
+﻿using VAuto.RestClient.ClientApi;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace RestClient
+namespace VAuto.RestClient
 {
     public interface IClient: IDataSetApi, IDealersApi,IVehiclesApi
     {

@@ -5,33 +5,33 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace Model {
+namespace VAuto.Core.Model {
 
   /// <summary>
   /// 
   /// </summary>
   [DataContract]
-  public class AnswerResponse {
+  public class DealerAnswer {
     /// <summary>
-    /// Gets or Sets Success
+    /// Gets or Sets DealerId
     /// </summary>
-    [DataMember(Name="success", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "success")]
-    public bool? Success { get; set; }
+    [DataMember(Name="dealerId", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "dealerId")]
+    public int? DealerId { get; set; }
 
     /// <summary>
-    /// Gets or Sets Message
+    /// Gets or Sets Name
     /// </summary>
-    [DataMember(Name="message", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "message")]
-    public string Message { get; set; }
+    [DataMember(Name="name", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "name")]
+    public string Name { get; set; }
 
     /// <summary>
-    /// Gets or Sets TotalMilliseconds
+    /// Gets or Sets Vehicles
     /// </summary>
-    [DataMember(Name="totalMilliseconds", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "totalMilliseconds")]
-    public int? TotalMilliseconds { get; set; }
+    [DataMember(Name="vehicles", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "vehicles")]
+    public List<VehicleAnswer> Vehicles { get; set; }
 
 
     /// <summary>
@@ -40,10 +40,10 @@ namespace Model {
     /// <returns>String presentation of the object</returns>
     public override string ToString()  {
       var sb = new StringBuilder();
-      sb.Append("class AnswerResponse {\n");
-      sb.Append("  Success: ").Append(Success).Append("\n");
-      sb.Append("  Message: ").Append(Message).Append("\n");
-      sb.Append("  TotalMilliseconds: ").Append(TotalMilliseconds).Append("\n");
+      sb.Append("class DealerAnswer {\n");
+      sb.Append("  DealerId: ").Append(DealerId).Append("\n");
+      sb.Append("  Name: ").Append(Name).Append("\n");
+      sb.Append("  Vehicles: ").Append(Vehicles).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }

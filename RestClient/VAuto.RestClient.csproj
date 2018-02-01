@@ -5,9 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Swagger\Client\**" />
-    <EmbeddedResource Remove="Swagger\Client\**" />
-    <None Remove="Swagger\Client\**" />
+    <PackageReference Include="RestEase" Version="1.4.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Core\VAuto.Core.csproj" />
   </ItemGroup>
 
 </Project>

@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Model\Model.csproj" />
-    <ProjectReference Include="..\RestClient\RestClient.csproj" />
+    <ProjectReference Include="..\Core\VAuto.Core.csproj" />
+    <ProjectReference Include="..\RestClient\VAuto.RestClient.csproj" />
   </ItemGroup>
 
 </Project>

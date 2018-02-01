@@ -5,19 +5,19 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace Model {
+namespace VAuto.Core.Model {
 
   /// <summary>
   /// 
   /// </summary>
   [DataContract]
-  public class VehicleIdsResponse {
+  public class Answer {
     /// <summary>
-    /// Gets or Sets VehicleIds
+    /// Gets or Sets Dealers
     /// </summary>
-    [DataMember(Name="vehicleIds", EmitDefaultValue=false)]
-    [JsonProperty(PropertyName = "vehicleIds")]
-    public List<int?> VehicleIds { get; set; }
+    [DataMember(Name="dealers", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "dealers")]
+    public List<DealerAnswer> Dealers { get; set; }
 
 
     /// <summary>
@@ -26,8 +26,8 @@ namespace Model {
     /// <returns>String presentation of the object</returns>
     public override string ToString()  {
       var sb = new StringBuilder();
-      sb.Append("class VehicleIdsResponse {\n");
-      sb.Append("  VehicleIds: ").Append(VehicleIds).Append("\n");
+      sb.Append("class Answer {\n");
+      sb.Append("  Dealers: ").Append(Dealers).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }

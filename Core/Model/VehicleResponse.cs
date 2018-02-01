@@ -5,13 +5,13 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 
-namespace IO.Swagger.Model {
+namespace VAuto.Core.Model {
 
   /// <summary>
   /// 
   /// </summary>
   [DataContract]
-  public class VehicleAnswer {
+  public class VehicleResponse {
     /// <summary>
     /// Gets or Sets VehicleId
     /// </summary>
@@ -40,6 +40,13 @@ namespace IO.Swagger.Model {
     [JsonProperty(PropertyName = "model")]
     public string Model { get; set; }
 
+    /// <summary>
+    /// Gets or Sets DealerId
+    /// </summary>
+    [DataMember(Name="dealerId", EmitDefaultValue=false)]
+    [JsonProperty(PropertyName = "dealerId")]
+    public int? DealerId { get; set; }
+
 
     /// <summary>
     /// Get the string presentation of the object
@@ -47,11 +54,12 @@ namespace IO.Swagger.Model {
     /// <returns>String presentation of the object</returns>
     public override string ToString()  {
       var sb = new StringBuilder();
-      sb.Append("class VehicleAnswer {\n");
+      sb.Append("class VehicleResponse {\n");
       sb.Append("  VehicleId: ").Append(VehicleId).Append("\n");
       sb.Append("  Year: ").Append(Year).Append("\n");
       sb.Append("  Make: ").Append(Make).Append("\n");
       sb.Append("  Model: ").Append(Model).Append("\n");
+      sb.Append("  DealerId: ").Append(DealerId).Append("\n");
       sb.Append("}\n");
       return sb.ToString();
     }

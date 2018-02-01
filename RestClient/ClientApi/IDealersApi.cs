@@ -1,11 +1,11 @@
-﻿using Model;
-using RestEase;
+﻿using RestEase;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using VAuto.Core.Model;
 
-namespace RestClient.ClientApi
+namespace VAuto.RestClient.ClientApi
 {
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints

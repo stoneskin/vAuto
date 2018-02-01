@@ -1,11 +1,11 @@
-﻿using Model;
-using RestEase;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using VAuto.Core.Model;
+using RestEase;
 
-namespace RestClient.ClientApi
+namespace VAuto.RestClient.ClientApi
 {
     /// <summary>
     /// Represents a collection of functions to interact with the API endpoints
@@ -33,6 +33,6 @@ namespace RestClient.ClientApi
         /// <param name="answer"></param>
         /// <returns>AnswerResponse</returns>
         [Post("/{datasetId}/answer")]
-        Task<AnswerResponse> DataSetPostAnswer([Path]string datasetId, Answer answer);
+        Task<AnswerResponse> DataSetPostAnswer([Path]string datasetId, [Body]Answer answer);
     }
 }
