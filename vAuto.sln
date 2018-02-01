@@ -3,11 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2024
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{CE088F4D-2266-42FE-AD50-D8D730298070}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject", "TestProject\TestProject.csproj", "{CE088F4D-2266-42FE-AD50-D8D730298070}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VAuto.RestClient", "RestClient\VAuto.RestClient.csproj", "{77F09D1B-2B05-43D1-9C6A-E59AE4866A3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VAuto.RestClient", "RestClient\VAuto.RestClient.csproj", "{77F09D1B-2B05-43D1-9C6A-E59AE4866A3C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VAuto.Core", "Core\VAuto.Core.csproj", "{24FFA017-2C22-42EA-AB53-5692168C4272}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VAuto.Core", "Core\VAuto.Core.csproj", "{24FFA017-2C22-42EA-AB53-5692168C4272}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D03CAACE-0258-4089-9E92-AB96675FC8C0}"
+	ProjectSection(SolutionItems) = preProject
+		ReadMe.md = ReadMe.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

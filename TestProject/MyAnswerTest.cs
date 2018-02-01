@@ -12,12 +12,8 @@ namespace TestProject
     [TestClass]
     public class MyAnswerTest
     {
-
-      
-
-
         [TestMethod]
-        public void Test_BuildAnswer()
+        public void MyAnswerTest_BuildAnswer()
         {
             var myanswer = new MyAnswer();
             var stopwatch = new Stopwatch();
@@ -34,12 +30,12 @@ namespace TestProject
         }
 
         [TestMethod]
-        public void Test_BuildAnswerPerformance()
+        public void MyAnswerTest_BuildAnswerPerformance()
         {
+            var stopwatch = new Stopwatch();
             var myanswer = new MyAnswer();
 
-            var stopwatch = new Stopwatch();
-            var loop = 10;
+            var loop = 5;
             long totalElapsed = 0;
             for (var i = 0; i < loop; i++)
             {
@@ -49,6 +45,7 @@ namespace TestProject
                 stopwatch.Stop();
                 totalElapsed += stopwatch.ElapsedMilliseconds;
                 Console.Out.WriteLine($"Test-BuildAnswer-loop-{i}:{stopwatch.ElapsedMilliseconds} ");
+                Console.Out.WriteLine($"Test-BuildAnswer-loop-{i}-answer:{answer.ToJson()} ");
             }
             Console.Out.WriteLine($"Test-BuildAnswer-Avg-Elapsed: {totalElapsed / loop}");
 
@@ -56,12 +53,44 @@ namespace TestProject
         }
 
         [TestMethod]
-        public void Test_RetriveDataAndPostMyAnswer() {
+        public void MyAnswerTest_RetriveDataAndPostMyAnswer()
+        {
+            var stopwatch = new Stopwatch();
             var myanswer = new MyAnswer();
-            var answerResp= myanswer.RetriveDataAndPostMyAnswer();
+            stopwatch.Start();
+            var answerResp = myanswer.RetriveDataAndPostMyAnswer();
+            stopwatch.Stop();
             Assert.IsTrue(answerResp.Success.Value);
-            Console.Out.WriteLine($"Test_RetriveDataAndPostMyAnswer: {answerResp}");
+            Console.Out.WriteLine($"Test_RetriveDataAndPostMyAnswer-Elapsed-[{stopwatch.ElapsedMilliseconds}]: {answerResp}");
+        }
+
+        [TestMethod]
+        public void MyAnswerTest_MultipleRetriveDataAndPostMyAnswer()
+        {
+            var stopwatch = new Stopwatch();
+            for (var i = 0; i < 15; i++)
+            {
+                try
+                {
+                    var myanswer = new MyAnswer();
+                    stopwatch.Restart();
+                    //var datasetId = myanswer.VAutoService.GetDataSetId().Result.DatasetId;
+                    //var answer = myanswer.BuildAnswer(datasetId).Result;
+                    //Console.Out.WriteLine($"Test_RetriveDataAndPostMyAnswer-Answer-{i}: {answer.ToJson()}");
+                    //var answerResponse = myanswer.VAutoService.PostAnswer(datasetId, answer).Result;
+                    var answerResponse = myanswer.RetriveDataAndPostMyAnswer();
+             
+                    stopwatch.Stop();
+                    Assert.IsTrue(answerResponse.Success.Value);
+                    Console.Out.WriteLine($"Test_RetriveDataAndPostMyAnswer-Elapsed-[{stopwatch.ElapsedMilliseconds}]: {answerResponse}");
+                }
+                catch (Exception ex)
+                {
+                    Console.Out.WriteLine($"Test_RetriveDataAndPostMyAnswer-Error: {ex}");
+
+                }
+            }
         }
     }
-        
+
 }

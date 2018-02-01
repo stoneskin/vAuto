@@ -23,12 +23,13 @@ namespace TestProject
 
             var datasetId = VAutoService.GetDataSetId().Result.DatasetId;
             var answer =   BuildAnswer(datasetId).Result;
+            Console.Out.WriteLine($"Test_RetriveDataAndPostMyAnswer-Answer: {answer.ToJson()}");
             var answerResponse =VAutoService.PostAnswer(datasetId, answer).Result;
             return answerResponse;
         }
 
         /// <summary>
-        /// 
+        /// BuildAnswer
         /// </summary>
         /// <returns></returns>
         public async System.Threading.Tasks.Task<Answer> BuildAnswer(string datasetId)
@@ -36,20 +37,20 @@ namespace TestProject
             var answer = new Answer() { Dealers = new List<DealerAnswer>() };
 
             var vehicleIdsResp = await VAutoService.GetVehicleIds(datasetId);
-
+            Console.Out.WriteLine($"VehicleIdsResp:{vehicleIdsResp.ToJson()}");
 
             var vehicleTasks = vehicleIdsResp.VehicleIds.Select(async vid =>
             {
                 var vehicleResp = await VAutoService.GetVehicles(datasetId, vid);
+                Console.Out.WriteLine($"VehicleResp:{vehicleResp.ToJson()}");
                 await UpdateAnswer(answer, datasetId, vehicleResp);
 
             });
 
             await Task.WhenAll(vehicleTasks).ContinueWith((task) =>
-            {
-                //todo
-                //check duplicat item in dealers
-                Console.Out.WriteLine($"Dealers count:{answer.Dealers.Count()}");
+            {         
+                //todo:something  
+                Console.Out.WriteLine($"Answer build completed:{answer.ToJson()}");
 
             });
 
@@ -60,21 +61,39 @@ namespace TestProject
 
         private async Task UpdateAnswer(Answer answer, string datasetId, VehicleResponse vehicleResp)
         {
-            var dealer = answer.Dealers.SingleOrDefault(d => d.DealerId == vehicleResp.DealerId);
-            if (dealer == null)
+            bool needLoadDealerName = false;
+            DealerAnswer dealer = null;
+            lock (answer)
             {
-                dealer = new DealerAnswer()
+                dealer = answer.Dealers.SingleOrDefault(d => d.DealerId == vehicleResp.DealerId);
+                if (dealer == null)
                 {
-                    DealerId = vehicleResp.DealerId
-                };
-                answer.Dealers.Add(dealer);
+                    dealer = new DealerAnswer()
+                    {
+                        DealerId = vehicleResp.DealerId
+                    };
+
+                    answer.Dealers.Add(dealer);
+
+                    needLoadDealerName = true;
+                }
+
+                if (dealer.Vehicles == null)
+                {
+                    dealer.Vehicles = new List<VehicleAnswer>();
+
+                }
+                var vehicle = BuildVehicle(vehicleResp);
+                Console.Out.WriteLine($"UpdateAnswer: AddVeicleToDealer-{dealer.DealerId} :{vehicle.ToJson()}");
+                dealer.Vehicles.Add(vehicle);
             }
-
-            if (dealer.Vehicles == null) dealer.Vehicles = new List<VehicleAnswer>();
-            dealer.Vehicles.Add(BuildVehicle(vehicleResp));
-
-            var dealerRes = await VAutoService.GetDealer(datasetId, vehicleResp.DealerId);
-            dealer.Name = dealerRes.Name;
+          
+            if (needLoadDealerName)
+            {
+                var dealerRes = await VAutoService.GetDealer(datasetId, vehicleResp.DealerId);
+                Console.Out.WriteLine($"UpdateAnswer: updateDealerName:{dealerRes.ToJson()}");
+                dealer.Name = dealerRes.Name;
+            }
         }
 
         private static VehicleAnswer BuildVehicle(VehicleResponse vehicleResp)

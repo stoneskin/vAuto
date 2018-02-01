@@ -20,7 +20,7 @@ namespace TestProject
         }
 
         [TestMethod]
-        public void Test_GetDataSetId_ReceivedDataSetId_Successfully()
+        public void RestClientTest_GetDataSetId_ReceivedDataSetId_Successfully()
         {
             var datasetIdResp = vAutoService.GetDataSetId().Result;
             Assert.IsNotNull(datasetIdResp);
@@ -28,7 +28,7 @@ namespace TestProject
         }
 
         [TestMethod]
-        public void Test_Given_DataSetId_Call_GetVehicleIds_ReceivedVehicleIdsResponse_Success()
+        public void RestClientTest_Given_DataSetId_Call_GetVehicleIds_ReceivedVehicleIdsResponse_Success()
         {
 
             var datasetId = "2RJFYx1p1Qg";
