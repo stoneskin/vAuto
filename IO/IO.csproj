@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Swagger\Client\**" />
+    <EmbeddedResource Remove="Swagger\Client\**" />
+    <None Remove="Swagger\Client\**" />
+  </ItemGroup>
+
+</Project>
